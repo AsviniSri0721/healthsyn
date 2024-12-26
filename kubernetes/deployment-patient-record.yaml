@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: patient-record-deployment
+  #appointment-scheduling-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: patient-record
+  template:
+    metadata:
+      labels:
+        app: patient-record
+    spec:
+      containers:
+      - name: patient-record
+        image: 476658066203.dkr.ecr.ap-south-1.amazonaws.com/simple-docker-service-02ca41ab5897:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+
+
+
